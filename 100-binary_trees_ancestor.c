@@ -1,19 +1,26 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_depth - calls recursive_depth to return the depth
- * of a node in a binary tree
- *
- * @tree: tree root
- * Return: depth of the tree or 0 if tree is NULL;
- */
+*binary_tree_depth - measures the depth of a node in a binary tree
+*@tree: pointer to the node to measure the depth
+*Return: depth of tree
+*/
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
+	size_t depth = 0;
+
 	if (!tree)
 		return (0);
-	
-	return (binary_tree_depth(tree->parent + 1));
+
+	while (tree->parent)
+	{
+		depth++;
+		tree = tree->parent;
+	}
+
+	return (depth);
 }
+
 /**
 *binary_trees_ancestor - finds lowest common ancestor of two nodes
 *@first: pointer to the first node
